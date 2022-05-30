@@ -8,7 +8,7 @@
   when: network_pkgs is not defined
 
 - name: Include specific tasks for the OS family
-  include_tasks: "{{ ansible_os_family }}_initial.yml"
+  include_tasks: "{{ ansible_distribution }}_initial.yml"
 
 - name: Cleanup interfaces configuration
   import_tasks: "clean_interfaces.yml"
