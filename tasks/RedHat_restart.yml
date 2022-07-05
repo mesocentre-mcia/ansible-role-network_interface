@@ -41,11 +41,12 @@
           or bond_result is changed
           or vlan_result is changed
           or bridge_result is changed
-          or bridge_port_result is changed)
+          or bridge_port_result is changed
+          or bridge_port_vlan_result is changed)
 
 - name: Restart the "NetworkManager" service on Red Hat systems
   service:
-    name: network
+    name: NetworkManager
     state: restarted
   when: >
     (network_allow_service_restart
@@ -55,4 +56,5 @@
      bond_result is changed or
      vlan_result is changed or
      bridge_result is changed or
-     bridge_port_result is changed)
+     bridge_port_result is changed or
+     bridge_port_vlan_result is changed)
