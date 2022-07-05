@@ -20,11 +20,11 @@
 
 - name: Create the network configuration file for virtual port on the bridge devices
   template:
-    src: "bridge_virtual_port_{{ ansible_distribution }}.j2"
+    src: "bridge_virtual_port_{{ ansible_os_family }}.j2"
     dest: "{{ net_path }}/{{ network_interface_file_prefix }}{{ item.1 }}{{ network_interface_file_postfix }}"
   with_subelements:
     - '{{ network_bridge_interfaces }}'
     - bridge_ports_vlan_interface
     - skip_missing: True
-  register: bridge_port_result
+  register: bridge_port_vlan_result
   notify: restart networking

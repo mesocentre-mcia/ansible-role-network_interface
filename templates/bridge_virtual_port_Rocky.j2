@@ -1,9 +1,0 @@
-DEVICE={{ item.1 }}
-BOOTPROTO=none
-VLAN=yes
-TYPE=Vlan
-PHYSDEV={{ item.1.rpartition('.')[0] }}
-VLAN_ID={{ item.1.rpartition('.')[2] }}
-ONBOOT=yes
-BRIDGE={{ item.0.device }}
-
