@@ -12,11 +12,23 @@ STP={{ item.stp }}
     {% endif -%}
 
     {% if item.address is defined %}
+    {% if item.address is string %}
 IPADDR={{ item.address }}
+    {% else %}
+    {% for address in item.address %}
+IPADDR{{ loop.index }}={{ address }}
+    {% endfor %}
+    {% endif %}
     {% endif -%}
 
     {% if item.netmask is defined %}
+    {% if item.address is string %}
 NETMASK={{ item.netmask }}
+    {% else %}
+    {% for netmask in item.netmask %}
+NETMASK{{ loop.index }}={{ netmask }}
+    {% endfor %}
+    {% endif %}
     {% endif -%}
 
     {% if item.gateway is defined %}
