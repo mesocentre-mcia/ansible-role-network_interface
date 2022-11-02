@@ -23,7 +23,13 @@ NETMASK{{ loop.index }}={{ netmask }}
     {% endif -%}
 
     {% if item.gateway is defined %}
+    {% if item.address is string %}
 GATEWAY={{ item.gateway }}
+    {% else %}
+    {% for gateway in item.gateway %}
+GATEWAY{{ loop.index }}={{ gateway }}
+    {% endfor %}
+    {% endif %}
     {% endif -%}
 
     {% if item.vlan is defined and item.vlan | bool %}
