@@ -3,6 +3,6 @@
   template:
     src: "ethernet_{{ ansible_os_family }}.j2"
     dest: "{{ net_path }}/{{ network_interface_file_prefix }}{{ item.device }}{{ network_interface_file_postfix }}"
-  loop: "{{ network_ether_interfaces }}"
+  loop: "{{ network_ether_interfaces | selectattr('device', 'defined') | list }}"
   register: ether_result
   notify: restart networking
